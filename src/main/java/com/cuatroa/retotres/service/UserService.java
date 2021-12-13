@@ -15,18 +15,35 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    /**
+     * 
+     */
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * 
+     * @return 
+     */
     public List<User> getAll() {
         return userRepository.getAll();
     }
 
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public Optional<User> getUser(int id) {
         
         return userRepository.getUser(id);
     }
 
+    /**
+     * 
+     * @param user
+     * @return 
+     */
     public User create(User user) {
         
         //obtiene el maximo id existente en la coleccion
@@ -55,6 +72,11 @@ public class UserService {
         
     }
 
+    /**
+     * 
+     * @param user
+     * @return 
+     */
     public User update(User user) {
 
         if (user.getId() != null) {
@@ -92,6 +114,11 @@ public class UserService {
         }
     }
     
+    /**
+     * 
+     * @param userId
+     * @return 
+     */
     public boolean delete(int userId) {
         Boolean aBoolean = getUser(userId).map(user -> {
             userRepository.delete(user);
@@ -100,10 +127,21 @@ public class UserService {
         return aBoolean;
     }
     
+    /**
+     * 
+     * @param email
+     * @return 
+     */
     public boolean emailExists(String email) {
         return userRepository.emailExists(email);
     }
 
+    /**
+     * 
+     * @param email
+     * @param password
+     * @return 
+     */
     public User authenticateUser(String email, String password) {
         Optional<User> usuario = userRepository.authenticateUser(email, password);
 
