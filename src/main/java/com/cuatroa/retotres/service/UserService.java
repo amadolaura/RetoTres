@@ -136,6 +136,7 @@ public class UserService {
         return userRepository.emailExists(email);
     }
 
+    
     /**
      * 
      * @param email
